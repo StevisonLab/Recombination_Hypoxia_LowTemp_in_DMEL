@@ -80,7 +80,7 @@ recom_summary <- recom_long %>%
   # cumulative height needed to place asterisks/outlines at the right
   # vertical position within each stacked bar
   group_by(Treatment, treat_order, vial_letter, Stock) %>%
-  arrange(interval, .by_group = TRUE) %>%
+  arrange(desc(interval), .by_group = TRUE) %>%   # ggplot stacks y-cv on top, so cumulate from v-f (bottom) up
   mutate(
     ymax = cumsum(mean_cM),
     ymin = ymax - mean_cM,
@@ -194,12 +194,14 @@ interval_map_plot_asterisk <- ggplot(recom_summary,
   scale_x_continuous(breaks = 1:4, labels = treat_labels) +
   scale_fill_manual(values = interval_colors, name = "Interval") +
   labs(x = "Treatment", y = "Map distance (cM)") +
-    theme_minimal(base_size = 10) +
+    labs(caption = "Shading within each bar, bottom to top: v-f (dark), cv-v (medium), y-cv (light).\nAsterisks: interval differs from Control (Dunnett-adjusted).") +
+  theme_minimal(base_size = 12) +
   theme(
-    axis.text.x = element_text(angle = 45, hjust = 1, size = 7),
+    axis.text = element_text(size = 10),
     panel.grid.minor = element_blank(),
     panel.grid.major.x = element_blank(),
-    strip.text = element_text(size = 8),
+    strip.text = element_text(size = 11, face = "bold"),
+    plot.caption = element_text(hjust = 0, size = 9),
     legend.position = "bottom"
   )
 #interval_map_plot_asterisk
@@ -228,8 +230,8 @@ interval_map_plot_gb <- ggplot(recom_summary,
   geom_col(position = "stack", width = 0.7, color = "white", linewidth = 0.2) +
   geom_text(
     data = filter(recom_summary, !is.na(sig)),
-    aes(x = factor(Stock,levels = stock_order), y = mean_cM+ymin/2+7, label = sig),
-    inherit.aes = FALSE, size = 5, vjust = 0,color="white") +
+    aes(x = factor(Stock,levels = stock_order), y = y_mid, label = sig),
+    inherit.aes = FALSE, size = 4.5, vjust = 0.5, color = "white") +
   facet_grid(treat_order ~ vial_letter,
              labeller = labeller(vial_letter = c(
                "A" = "1-2 DPM", "B" = "3-4 DPM",
@@ -240,17 +242,19 @@ interval_map_plot_gb <- ggplot(recom_summary,
   #scale_x_continuous(breaks = 1:5) +
   scale_fill_manual(values = col_pal_full, breaks = paste(stock_order, 2, sep = "."), name = "Genotype",labels=stock_order) +
   labs(x = "Genotype", y = "Genetic map length (cM)") +
-  theme_minimal(base_size = 10) +
+  labs(caption = "Shading within each bar, bottom to top: v-f (dark), cv-v (medium), y-cv (light).\nAsterisks: interval differs from Control (Dunnett-adjusted).") +
+  theme_minimal(base_size = 12) +
   theme(
-    axis.text.x = element_text(angle = 45, hjust = 1, size = 7),
+    axis.text = element_text(size = 10),
     panel.grid.minor = element_blank(),
     panel.grid.major.x = element_blank(),
-    strip.text = element_text(size = 8),
+    strip.text = element_text(size = 11, face = "bold"),
+    plot.caption = element_text(hjust = 0, size = 9),
     legend.position = "bottom"
   )
 interval_map_plot_gb
 ggsave("images/Interval_map_byGB.png", interval_map_plot_gb,
-       width = 10, height = 11, units = "in")
+       width = 8, height = 9, units = "in", dpi = 600)
 
 
 #Wrap by stock instead of treatment and remove day:
@@ -264,7 +268,7 @@ recom_summary2 <- recom_long %>%
   # cumulative height needed to place asterisks/outlines at the right
   # vertical position within each stacked bar
   group_by(Treatment, treat_order, Stock) %>%
-  arrange(interval, .by_group = TRUE) %>%
+  arrange(desc(interval), .by_group = TRUE) %>%   # ggplot stacks y-cv on top, so cumulate from v-f (bottom) up
   mutate(
     ymax = cumsum(mean_cM),
     ymin = ymax - mean_cM,
@@ -290,8 +294,8 @@ interval_map_gb_simple <- ggplot(recom_summary2,
   geom_col(position = "stack", width = 0.7, color = "white", linewidth = 0.2) +
   geom_text(
     data = filter(recom_summary2, !is.na(sig)),
-    aes(x = factor(Stock,levels = stock_order), y = mean_cM+ymin/2+7, label = sig),
-    inherit.aes = FALSE, size = 5, vjust = 0,color="white") +
+    aes(x = factor(Stock,levels = stock_order), y = y_mid, label = sig),
+    inherit.aes = FALSE, size = 4.5, vjust = 0.5, color = "white") +
   facet_wrap(~treat_order,
              labeller = labeller(treat_order = c(
                  "1" = "Control", "2" = "Hypoxia",
@@ -299,17 +303,19 @@ interval_map_gb_simple <- ggplot(recom_summary2,
   #scale_x_continuous(breaks = 1:5) +
   scale_fill_manual(values = col_pal_full, breaks = paste(stock_order, 2, sep = "."), name = "Genotype",labels=stock_order) +
   labs(x = "Genotype", y = "Genetic map length (cM)") +
-  theme_minimal(base_size = 10) +
+  labs(caption = "Shading within each bar, bottom to top: v-f (dark), cv-v (medium), y-cv (light).\nAsterisks: interval differs from Control (Dunnett-adjusted).") +
+  theme_minimal(base_size = 12) +
   theme(
-    axis.text.x = element_text(angle = 45, hjust = 1, size = 7),
+    axis.text = element_text(size = 10),
     panel.grid.minor = element_blank(),
     panel.grid.major.x = element_blank(),
-    strip.text = element_text(size = 8),
+    strip.text = element_text(size = 11, face = "bold"),
+    plot.caption = element_text(hjust = 0, size = 9),
     legend.position = "bottom"
   )
 interval_map_gb_simple
 ggsave("images/Interval_map_simple.png", interval_map_gb_simple,
-       width = 10, height = 11, units = "in")
+       width = 7, height = 7.5, units = "in", dpi = 600)
 
 ## ---- 6. View / save -----------------------------------------------------
 #interval_map_plot_asterisk

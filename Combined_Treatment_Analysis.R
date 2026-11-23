@@ -44,6 +44,10 @@ sum(recomb$num_M)
 sum(recomb$num_offspring)
 length(unique(sort(recomb$F1_vial)))
 
+#Revised Figure 3 (uses fit_full from recombination_updated.R) and Figure S1:
+source("scripts/Figure3_brood_by_treatment.R")
+source("scripts/FigureS1_observer_TCO.R")
+
 #Viability checks (reciprocal classes and sex ratio):
 source("scripts/haplotype_bias.R")
 source("scripts/sex_ratio.R")

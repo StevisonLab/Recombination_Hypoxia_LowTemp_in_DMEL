@@ -154,7 +154,7 @@ panel_b <- ggplot(sr_bc_brood, aes(x = vial_letter, y = prop, colour = Treatment
   geom_line(position = pd) +
   geom_pointrange(aes(ymin = lcl, ymax = ucl), position = pd, size = 0.2) +
   facet_wrap(~ Stock, nrow = 1, labeller = labeller(Stock = dgrp_label)) +
-  scale_x_discrete(labels = c(A = "2-3", B = "4-5", C = "6-7", D = "8-9")) +
+  scale_x_discrete(labels = c(A = "1–2", B = "3–4", C = "5–6", D = "7–8")) +
   scale_colour_manual(values = treat_cols, labels = treat_labels) +
   labs(x = "Days post-mating (brood)", y = "Proportion of sons", colour = NULL) +
   theme_bw(base_size = 9) +
