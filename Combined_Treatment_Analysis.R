@@ -43,3 +43,10 @@ source("scripts/recombination_updated.R")
 sum(recomb$num_M)
 sum(recomb$num_offspring)
 length(unique(sort(recomb$F1_vial)))
+
+#Viability checks (reciprocal classes and sex ratio):
+source("scripts/haplotype_bias.R")
+source("scripts/sex_ratio.R")
+
+#Recombination alongside the companion study's traits:
+source("scripts/companion_summary.R")

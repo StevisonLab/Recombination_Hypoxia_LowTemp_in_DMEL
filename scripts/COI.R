@@ -45,13 +45,13 @@ COI_test <- COI %>%
 fit_ycv_cvv <- glm(cbind(Obs_DCO_ycv_cvv) ~ Treatment * Stock + offset(log(Exp_DCO_ycv_cvv)), data=COI_test,family=quasipoisson(link = "log"))
 #summary(fit_ycv_cvv)
 
-anova_coi_ycv_cvv <- anova(fit_ycv_cvv, test="F")
+anova_coi_ycv_cvv <- Anova(fit_ycv_cvv, test="F")
 anova_coi_ycv_cvv
 #Significant interaction detected
 write.csv(anova_coi_ycv_cvv,"output/interference_ycv_cvv_model_table.csv")
 
 fit_contrast_ycv_cvv <- emmeans::emmeans(fit_ycv_cvv, "Treatment", by="Stock", mode="kenward-roger")
-fit_contr_ycv_cvv <- contrast(fit_contrast_ycv_cvv, method="trt.vs.ctrl")
+fit_contr_ycv_cvv <- contrast(fit_contrast_ycv_cvv, method="pairwise")
 
 pheno_contr_ycv_cvv <- as.data.frame(summary(fit_contr_ycv_cvv))
 pheno_contr_ycv_cvv

@@ -18,7 +18,7 @@ odds_figure_full=ggplot(aes(y=full_or,x=vial_letter,group=contrast,col=contrast,
   annotate(geom="text", x=1, y=2.3, label=odds_ratio$full_sig[4],color="#984ea3",size=10)+annotate(geom="text", x=2, y=2.3, label=odds_ratio$full_sig[10],color="#984ea3",size=10)+annotate(geom="text", x=3, y=2.3, label=odds_ratio$full_sig[16],color="#984ea3",size=10)+annotate(geom="text", x=4, y=2.3, label=odds_ratio$full_sig[22],color="#984ea3",size=10)+
   annotate(geom="text", x=1, y=2.4, label=odds_ratio$full_sig[5],color="#ff7f00",size=10)+annotate(geom="text", x=2, y=2.4, label=odds_ratio$full_sig[11],color="#ff7f00",size=10)+annotate(geom="text", x=3, y=2.4, label=odds_ratio$full_sig[17],color="#ff7f00",size=10)+annotate(geom="text", x=4, y=2.4, label=odds_ratio$full_sig[23],color="#ff7f00",size=10)+
   annotate(geom="text", x=1, y=2.5, label=odds_ratio$full_sig[6],color="#ffff33",size=10)+annotate(geom="text", x=2, y=2.5, label=odds_ratio$full_sig[12],color="#ffff33",size=10)+annotate(geom="text", x=3, y=2.5, label=odds_ratio$full_sig[18],color="#ffff33",size=10)+annotate(geom="text", x=4, y=2.5, label=odds_ratio$full_sig[24],color="#ffff33",size=10)
-odds_figure_full
+print(odds_figure_full)  # print() is needed for the plot to render inside source()
 dev.off()
 
 #repeat for 57
@@ -37,7 +37,7 @@ odds_figure_full=ggplot(aes(y=full_or,x=vial_letter,group=contrast,col=contrast,
   annotate(geom="text", x=1, y=2.3, label=odds_ratio$full_sig[4],color="#984ea3",size=10)+annotate(geom="text", x=2, y=2.3, label=odds_ratio$full_sig[10],color="#984ea3",size=10)+annotate(geom="text", x=3, y=2.3, label=odds_ratio$full_sig[16],color="#984ea3",size=10)+annotate(geom="text", x=4, y=2.3, label=odds_ratio$full_sig[22],color="#984ea3",size=10)+
   annotate(geom="text", x=1, y=2.4, label=odds_ratio$full_sig[5],color="#ff7f00",size=10)+annotate(geom="text", x=2, y=2.4, label=odds_ratio$full_sig[11],color="#ff7f00",size=10)+annotate(geom="text", x=3, y=2.4, label=odds_ratio$full_sig[17],color="#ff7f00",size=10)+annotate(geom="text", x=4, y=2.4, label=odds_ratio$full_sig[23],color="#ff7f00",size=10)+
   annotate(geom="text", x=1, y=2.5, label=odds_ratio$full_sig[6],color="#ffff33",size=10)+annotate(geom="text", x=2, y=2.5, label=odds_ratio$full_sig[12],color="#ffff33",size=10)+annotate(geom="text", x=3, y=2.5, label=odds_ratio$full_sig[18],color="#ffff33",size=10)+annotate(geom="text", x=4, y=2.5, label=odds_ratio$full_sig[24],color="#ffff33",size=10)
-odds_figure_full
+print(odds_figure_full)  # print() is needed for the plot to render inside source()
 dev.off()
 
 #repeat for 491
@@ -56,7 +56,7 @@ odds_figure_full=ggplot(aes(y=full_or,x=vial_letter,group=contrast,col=contrast,
   annotate(geom="text", x=1, y=2.3, label=odds_ratio$full_sig[4],color="#984ea3",size=10)+annotate(geom="text", x=2, y=2.3, label=odds_ratio$full_sig[10],color="#984ea3",size=10)+annotate(geom="text", x=3, y=2.3, label=odds_ratio$full_sig[16],color="#984ea3",size=10)+annotate(geom="text", x=4, y=2.3, label=odds_ratio$full_sig[22],color="#984ea3",size=10)+
   annotate(geom="text", x=1, y=2.4, label=odds_ratio$full_sig[5],color="#ff7f00",size=10)+annotate(geom="text", x=2, y=2.4, label=odds_ratio$full_sig[11],color="#ff7f00",size=10)+annotate(geom="text", x=3, y=2.4, label=odds_ratio$full_sig[17],color="#ff7f00",size=10)+annotate(geom="text", x=4, y=2.4, label=odds_ratio$full_sig[23],color="#ff7f00",size=10)+
   annotate(geom="text", x=1, y=2.5, label=odds_ratio$full_sig[6],color="#ffff33",size=10)+annotate(geom="text", x=2, y=2.5, label=odds_ratio$full_sig[12],color="#ffff33",size=10)+annotate(geom="text", x=3, y=2.5, label=odds_ratio$full_sig[18],color="#ffff33",size=10)+annotate(geom="text", x=4, y=2.5, label=odds_ratio$full_sig[24],color="#ffff33",size=10)
-odds_figure_full
+print(odds_figure_full)  # print() is needed for the plot to render inside source()
 dev.off()
 
 #repeat for 391
@@ -75,7 +75,7 @@ odds_figure_full=ggplot(aes(y=full_or,x=vial_letter,group=contrast,col=contrast,
   annotate(geom="text", x=1, y=2.3, label=odds_ratio$full_sig[4],color="#984ea3",size=10)+annotate(geom="text", x=2, y=2.3, label=odds_ratio$full_sig[10],color="#984ea3",size=10)+annotate(geom="text", x=3, y=2.3, label=odds_ratio$full_sig[16],color="#984ea3",size=10)+annotate(geom="text", x=4, y=2.3, label=odds_ratio$full_sig[22],color="#984ea3",size=10)+
   annotate(geom="text", x=1, y=2.4, label=odds_ratio$full_sig[5],color="#ff7f00",size=10)+annotate(geom="text", x=2, y=2.4, label=odds_ratio$full_sig[11],color="#ff7f00",size=10)+annotate(geom="text", x=3, y=2.4, label=odds_ratio$full_sig[17],color="#ff7f00",size=10)+annotate(geom="text", x=4, y=2.4, label=odds_ratio$full_sig[23],color="#ff7f00",size=10)+
   annotate(geom="text", x=1, y=2.5, label=odds_ratio$full_sig[6],color="#ffff33",size=10)+annotate(geom="text", x=2, y=2.5, label=odds_ratio$full_sig[12],color="#ffff33",size=10)+annotate(geom="text", x=3, y=2.5, label=odds_ratio$full_sig[18],color="#ffff33",size=10)+annotate(geom="text", x=4, y=2.5, label=odds_ratio$full_sig[24],color="#ffff33",size=10)
-odds_figure_full
+print(odds_figure_full)  # print() is needed for the plot to render inside source()
 dev.off()
 
 #repeat for 508
@@ -94,5 +94,5 @@ odds_figure_full=ggplot(aes(y=full_or,x=vial_letter,group=contrast,col=contrast,
   annotate(geom="text", x=1, y=2.3, label=odds_ratio$full_sig[4],color="#984ea3",size=10)+annotate(geom="text", x=2, y=2.3, label=odds_ratio$full_sig[10],color="#984ea3",size=10)+annotate(geom="text", x=3, y=2.3, label=odds_ratio$full_sig[16],color="#984ea3",size=10)+annotate(geom="text", x=4, y=2.3, label=odds_ratio$full_sig[22],color="#984ea3",size=10)+
   annotate(geom="text", x=1, y=2.4, label=odds_ratio$full_sig[5],color="#ff7f00",size=10)+annotate(geom="text", x=2, y=2.4, label=odds_ratio$full_sig[11],color="#ff7f00",size=10)+annotate(geom="text", x=3, y=2.4, label=odds_ratio$full_sig[17],color="#ff7f00",size=10)+annotate(geom="text", x=4, y=2.4, label=odds_ratio$full_sig[23],color="#ff7f00",size=10)+
   annotate(geom="text", x=1, y=2.5, label=odds_ratio$full_sig[6],color="#ffff33",size=10)+annotate(geom="text", x=2, y=2.5, label=odds_ratio$full_sig[12],color="#ffff33",size=10)+annotate(geom="text", x=3, y=2.5, label=odds_ratio$full_sig[18],color="#ffff33",size=10)+annotate(geom="text", x=4, y=2.5, label=odds_ratio$full_sig[24],color="#ffff33",size=10)
-odds_figure_full
+print(odds_figure_full)  # print() is needed for the plot to render inside source()
 dev.off()
