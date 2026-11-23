@@ -10,7 +10,7 @@ merged$observer <- as.numeric(as.factor(merged$observer))
 
 #define haplotype classes
 haplotypes=c("wt.wt.wt.wt","y.cv.v.f","y.wt.wt.wt","wt.cv.wt.wt","wt.wt.v.wt","wt.wt.wt.f",      "y.cv.wt.wt","y.cv.v.wt","y.wt.v.wt","y.wt.wt.f","wt.wt.v.f","wt.cv.v.f","wt.cv.v.wt" ,     "wt.cv.wt.f","y.wt.v.f","y.cv.wt.f")
-haps_nco=c("wt.wt.wt.wt","mt.mt.mt.mt")
+haps_nco=c("wt.wt.wt.wt","y.cv.v.f")
 haps_sco=c("y.wt.wt.wt","wt.wt.wt.f","y.cv.wt.wt","y.cv.v.wt","wt.wt.v.f","wt.cv.v.f")
 haps_dco=c("wt.cv.wt.wt","wt.wt.v.wt","y.wt.wt.f","wt.cv.v.wt","y.wt.v.f","y.cv.wt.f")
 haps_tco=c("y.wt.v.wt","wt.cv.wt.f")

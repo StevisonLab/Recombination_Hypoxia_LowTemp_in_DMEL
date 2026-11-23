@@ -5,3 +5,4 @@
 .DS_Store
 scripts/stress_v_RR.R
 scripts/recombination.R
+Rplots.pdf

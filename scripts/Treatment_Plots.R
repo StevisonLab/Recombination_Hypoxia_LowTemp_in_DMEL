@@ -18,7 +18,7 @@ full_figure <- ggplot(recom_merge, aes(x=treat_order, y=recomb_rate*100,col=fact
     axis.text.x = element_text(angle = 45, hjust = 1, size = 7),
     strip.text = element_text(size = 8),
     legend.position = "top"
-  )+ylim(27.5,88)+
+  )+coord_cartesian(ylim = y_range_brood)+
   scale_color_manual( values = col_scheme2)+
   scale_x_continuous(labels=c("Control","8% Oxygen","18°C","18°C + 8% Oxygen")) +
   geom_line(linewidth = 2, lineend = "round")+ theme(legend.title=element_blank()) +
@@ -43,7 +43,7 @@ full_figure_emmeans <- ggplot(recom_merge, aes(x=treat_order, y=prob*100,col=fac
     axis.text.x = element_text(angle = 45, hjust = 1, size = 7),
     strip.text = element_text(size = 8),
     legend.position = "top"
-  )+ylim(27.5,88)+
+  )+coord_cartesian(ylim = y_range_brood)+
   scale_color_manual( values = col_scheme2)+
   scale_x_continuous(labels=c("Control","8% Oxygen","18°C","18°C + 8% Oxygen")) +
   geom_line(linewidth = 2, lineend = "round")+ theme(legend.title=element_blank()) +

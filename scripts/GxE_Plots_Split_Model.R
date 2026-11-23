@@ -17,6 +17,9 @@ cld_results$temp_mod=ifelse(cld_results$temperature=="Low",18,25)
 #cld_results$temperature=ifelse(cld_results$temperature=="Low","18°C","25°C")
 cld_results$oxy_mod=ifelse(cld_results$oxygen=="Low",8,21)
 
+# y-axis range from the data (emmeans and 95% CIs), so no points or error bars are dropped
+y_range_full <- range(100 * c(cld_results$asymp.LCL, cld_results$asymp.UCL))
+
 #Add significance (manually based on posthoc contrast table):
 #Note: here if ANY of the timepoints are significant, the strain is indicated as signficant here. The ONLY signficant reaction norm here is the temperature slop of 57 at low oxygen!
 low_stocks=unique(sort(pheno_contr_full_oxy$Stock[pheno_contr_full_oxy$full_sig!="" & pheno_contr_full_oxy$temperature=="Low"]))
@@ -31,7 +34,7 @@ full_figure_GxE <- ggplot(recom_merge, aes(x=oxy_mod, y=100*prob,col=factor(Stoc
   facet_wrap(~temp_mod, labeller = labeller(temp_mod =c("18" = "18°C","25" = "25°C"))) +
   xlab("Oxygen") + theme(plot.title = element_blank()) +
   ylab(bquote(Map~Length~(cM))) +
-  theme_base()+ylim(50,70)+
+  theme_base()+coord_cartesian(ylim = y_range_full)+
   scale_color_manual( values = col_scheme2)+
   scale_x_continuous(limits=c(8,21),breaks=c(8,21),labels=c("8%","21%")) +
   geom_line(linewidth = 2, lineend = "round")+ theme(legend.title=element_blank()) +
@@ -63,7 +66,7 @@ full_figure_GxE_temp <- ggplot(recom_merge, aes(x=temp_mod, y=prob*100,col=facto
   facet_wrap(~oxy_mod, labeller = labeller(oxy_mod =c("8" = "8%","21" = "21%"))) +
   xlab("Temperature") + theme(plot.title = element_blank()) +
   ylab(bquote(Map~Length~(cM))) +
-  theme_base()+ylim(50,70)+
+  theme_base()+coord_cartesian(ylim = y_range_full)+
   scale_color_manual( values = col_scheme2)+
   scale_x_continuous(limits=c(18,25),breaks=c(18,25),labels=c("18°C","25°C")) +
   geom_line(linewidth = 2, lineend = "round")+ theme(legend.title=element_blank()) +
@@ -113,6 +116,9 @@ recomb_summary$temperature=ifelse(recomb_summary$Treatment=="Control","Control",
 recom_merge=merge(cld_results2,recomb_summary,by.x=c("Stock","oxygen","temperature","vial_letter"),by.y=c("Stock","oxygen","temperature","Group.3"))
 recom_merge$recomb_rate=recom_merge$recomb_rate/100
 
+# One y-axis range for all brood plots (here and in Treatment_Plots.R), from the data
+y_range_brood <- range(100 * c(recom_merge$asymp.LCL, recom_merge$asymp.UCL, recom_merge$recomb_rate))
+
 #Add significance (manually based on posthoc contrast table):
 #Note: here if ANY of the timepoints are significant, the strain is indicated as signficant here. The ONLY signficant reaction norm here is the temperature slop of 57 at low oxygen!
 
@@ -129,7 +135,7 @@ full_figure_GxE_A <- ggplot(A_plot, aes(x=oxy_mod, y=prob*100,col=factor(Stock,l
   facet_wrap(~temp_mod, labeller = labeller(temp_mod =c("18" = "18°C","25" = "25°C"))) +
   xlab("Oxygen") + theme(plot.title = element_blank()) +
   ylab(bquote(Map~Length~(cM))) +
-  theme_base()+ylim(27.5,88)+
+  theme_base()+coord_cartesian(ylim = y_range_brood)+
   scale_color_manual( values = col_scheme2)+
   scale_x_continuous(limits=c(8,21),breaks=c(8,21),labels=c("8%","21%")) +
   geom_line(linewidth = 2, lineend = "round")+ theme(legend.title=element_blank()) +
@@ -156,7 +162,7 @@ full_figure_GxE_B <- ggplot(B_plot, aes(x=oxy_mod, y=prob*100,col=factor(Stock,l
   facet_wrap(~temp_mod, labeller = labeller(temp_mod =c("18" = "18°C","25" = "25°C"))) +
   xlab("Oxygen") + theme(plot.title = element_blank()) +
   ylab(bquote(Map~Length~(cM))) +
-  theme_base()+ylim(27.5,88)+
+  theme_base()+coord_cartesian(ylim = y_range_brood)+
   scale_color_manual( values = col_scheme2)+
   scale_x_continuous(limits=c(8,21),breaks=c(8,21),labels=c("8%","21%")) +
   geom_line(linewidth = 2, lineend = "round")+ theme(legend.title=element_blank()) +
@@ -183,7 +189,7 @@ full_figure_GxE_C <- ggplot(C_plot, aes(x=oxy_mod, y=prob*100,col=factor(Stock,l
   facet_wrap(~temp_mod, labeller = labeller(temp_mod =c("18" = "18°C","25" = "25°C"))) +
   xlab("Oxygen") + theme(plot.title = element_blank()) +
   ylab(bquote(Map~Length~(cM))) +
-  theme_base()+ylim(27.5,88)+
+  theme_base()+coord_cartesian(ylim = y_range_brood)+
   scale_color_manual( values = col_scheme2)+
   scale_x_continuous(limits=c(8,21),breaks=c(8,21),labels=c("8%","21%")) +
   geom_line(linewidth = 2, lineend = "round")+ theme(legend.title=element_blank()) +
@@ -210,7 +216,7 @@ full_figure_GxE_D <- ggplot(D_plot, aes(x=oxy_mod, y=prob*100,col=factor(Stock,l
   facet_wrap(~temp_mod, labeller = labeller(temp_mod =c("18" = "18°C","25" = "25°C"))) +
   xlab("Oxygen") + theme(plot.title = element_blank()) +
   ylab(bquote(Map~Length~(cM))) +
-  theme_base()+ylim(27.5,88)+
+  theme_base()+coord_cartesian(ylim = y_range_brood)+
   scale_color_manual( values = col_scheme2)+
   scale_x_continuous(limits=c(8,21),breaks=c(8,21),labels=c("8%","21%")) +
   geom_line(linewidth = 2, lineend = "round")+ theme(legend.title=element_blank()) +
@@ -241,7 +247,7 @@ full_figure_GxE_temp_A <- ggplot(A_plot, aes(x=temp_mod, y=prob*100,col=factor(S
   facet_wrap(~oxy_mod, labeller = labeller(oxy_mod =c("8" = "8%","21" = "21%"))) +
   xlab("Temperature") + theme(plot.title = element_blank()) +
   ylab(bquote(Map~Length~(cM))) +
-  theme_base()+ylim(27.5,88)+
+  theme_base()+coord_cartesian(ylim = y_range_brood)+
   scale_color_manual( values = col_scheme2)+
   scale_x_continuous(limits=c(18,25),breaks=c(18,25),labels=c("18°C","25°C")) +
   geom_line(linewidth = 2, lineend = "round")+ theme(legend.title=element_blank()) +
@@ -265,7 +271,7 @@ full_figure_GxE_temp_B <- ggplot(B_plot, aes(x=temp_mod, y=prob*100,col=factor(S
   facet_wrap(~oxy_mod, labeller = labeller(oxy_mod =c("8" = "8%","21" = "21%"))) +
   xlab("Temperature") + theme(plot.title = element_blank()) +
   ylab(bquote(Map~Length~(cM))) +
-  theme_base()+ylim(27.5,88)+
+  theme_base()+coord_cartesian(ylim = y_range_brood)+
   scale_color_manual( values = col_scheme2)+
   scale_x_continuous(limits=c(18,25),breaks=c(18,25),labels=c("18°C","25°C")) +
   geom_line(linewidth = 2, lineend = "round")+ theme(legend.title=element_blank()) +
@@ -290,7 +296,7 @@ full_figure_GxE_temp_C <- ggplot(C_plot, aes(x=temp_mod, y=prob*100,col=factor(S
   facet_wrap(~oxy_mod, labeller = labeller(oxy_mod =c("8" = "8%","21" = "21%"))) +
   xlab("Temperature") + theme(plot.title = element_blank()) +
   ylab(bquote(Map~Length~(cM))) +
-  theme_base()+ylim(27.5,88)+
+  theme_base()+coord_cartesian(ylim = y_range_brood)+
   scale_color_manual( values = col_scheme2)+
   scale_x_continuous(limits=c(18,25),breaks=c(18,25),labels=c("18°C","25°C")) +
   geom_line(linewidth = 2, lineend = "round")+ theme(legend.title=element_blank()) +
@@ -314,7 +320,7 @@ full_figure_GxE_temp_D <- ggplot(D_plot, aes(x=temp_mod, y=prob*100,col=factor(S
   facet_wrap(~oxy_mod, labeller = labeller(oxy_mod =c("8" = "8%","21" = "21%"))) +
   xlab("Temperature") + theme(plot.title = element_blank()) +
   ylab(bquote(Map~Length~(cM))) +
-  theme_base()+ylim(27.5,88)+
+  theme_base()+coord_cartesian(ylim = y_range_brood)+
   scale_color_manual( values = col_scheme2)+
   scale_x_continuous(limits=c(18,25),breaks=c(18,25),labels=c("18°C","25°C")) +
   geom_line(linewidth = 2, lineend = "round")+ theme(legend.title=element_blank()) +
